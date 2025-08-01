@@ -1,8 +1,13 @@
 package com.study;
 
+import java.util.Arrays;
+
 public class Calc {
     public static int run(String expression) {
-        char[] charArray = expression.replaceAll("\\s+", "").toCharArray();
-        return Character.getNumericValue(charArray[0]) + Character.getNumericValue(charArray[2]);
+        String[] numbers = expression.split("\\+", 2);
+        return Arrays.stream(numbers)
+                .map(String::strip)
+                .mapToInt(Integer::parseInt)
+                .sum();
     }
 }
